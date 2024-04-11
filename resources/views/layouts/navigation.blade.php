@@ -23,6 +23,9 @@
                     <x-nav-link :href="route('type')" :active="request()->routeIs('type')">
                         {{ __('types de matériels') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('metier')" :active="request()->routeIs('metier')">
+                        {{ __('types de métiers') }}
+                    </x-nav-link>
 
                   
                 </div>

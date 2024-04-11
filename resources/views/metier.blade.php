@@ -5,7 +5,7 @@
 <x-app-layout>
     <x-slot  name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            types de matériels
+            types de métiers
         </h2>
 
 
@@ -31,10 +31,10 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-        @foreach($types as $type)
+        @foreach($metier as $metier)
     <tr>
-        <td>{{ $type->id }}</td>
-        <td>{{ $type->name }}</td>
+        <td>{{ $metier->id }}</td>
+        <td>{{ $metier->nom }}</td>
     </tr>
 @endforeach
 

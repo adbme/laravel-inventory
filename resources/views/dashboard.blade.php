@@ -46,7 +46,7 @@
         <td>{{ $material->type ? $material->type->name : '❌' }}</td>
         <td>{{ $material->numero }}</td>
         <td>{{ $material->assigne_a }}</td>
-        <td>{{ $material->metier }}</td>
+        <td>{{ $material->metier ? $material->metier->nom : '❌' }}</td>
         <td>{{ $material->marque }}</td>
         <td class="iconActionDiv">
             <form action="/dashboard/{{$material->id}}" method="post" class="delete-form">

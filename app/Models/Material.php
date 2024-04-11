@@ -15,12 +15,17 @@ class Material extends Model
         'type_id', 
         'numero',
         'assigne_a',
-        'metier',
+        'metier_id',
         'marque',
     ];
 
     public function type()
     {
         return $this->belongsTo(Type::class);
+    }
+
+    public function metier()
+    {
+        return $this->belongsTo(Metier::class);
     }
 }

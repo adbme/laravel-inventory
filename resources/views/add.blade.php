@@ -23,8 +23,8 @@
 
         <label for="metier">Métier :</label>
         <select id="metier" name="metier">
-        @foreach($materials as $material)
-            <option value="Développeur">{{$material->metier}}</option>
+        @foreach($metiers as $metier)
+            <option value="{{$metier->id}}">{{$metier->nom}}</option>
             @endforeach
         </select><br>
 

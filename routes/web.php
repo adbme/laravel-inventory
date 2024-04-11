@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\MetierController;
+
 
 
 Route::get('/', function () {
@@ -17,7 +19,7 @@ Route::delete('/dashboard/{id}', [MaterialController::class, 'destroy']);
 
 Route::get('/add', [MaterialController::class, 'store'])->name('add');
 
-
+Route::get('/metier', [MetierController::class, 'index'])->name('metier');
 
 Route::get('/type', [TypeController::class, 'index'])->name('type');
 
