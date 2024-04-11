@@ -19,6 +19,12 @@
                     <x-nav-link :href="route('add')" :active="request()->routeIs('add')">
                         {{ __('ajouter du matériel') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('type')" :active="request()->routeIs('type')">
+                        {{ __('types de matériels') }}
+                    </x-nav-link>
+
+                  
                 </div>
             </div>
 

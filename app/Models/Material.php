@@ -12,10 +12,15 @@ class Material extends Model
     protected $table = 'materiels'; 
 
     protected $fillable = [
-        'type', 
+        'type_id', 
         'numero',
         'assigne_a',
         'metier',
         'marque',
     ];
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

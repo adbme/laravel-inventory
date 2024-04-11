@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\TypeController;
 
 
 Route::get('/', function () {
@@ -14,9 +15,12 @@ Route::post('/dashboard', [MaterialController::class, 'store'])->name('dashboard
 Route::delete('/dashboard/{id}', [MaterialController::class, 'destroy']);
 
 
-Route::get('/add', function () {
-    return view('add');
-})->middleware(['auth', 'verified'])->name('add');
+Route::get('/add', [MaterialController::class, 'store'])->name('add');
+
+
+
+Route::get('/type', [TypeController::class, 'index'])->name('type');
+
 
 Route::get('/edit/{id}', [MaterialController::class, 'edit'])->name('edit');
 

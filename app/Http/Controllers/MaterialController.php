@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Type;
 
 use App\Models\Material;
 use Illuminate\Http\Request;
@@ -10,22 +11,34 @@ class MaterialController extends Controller
     public function index()
 {
     $materials = Material::all();
-    return view('dashboard', ['materials' => $materials]);
+    $types = Type::all();
+    
+    return view('dashboard', ['materials' => $materials, 'types' => $types]);
 }
 
 
-    public function store(Request $request)
-    {
-        Material::create([
-            'type' => $request->input('type'),
-            'numero' => $request->input('numero'),
-            'assigne_a' => $request->input('assigne'),
-            'metier' => $request->input('metier'),
-            'marque' => $request->input('marque'),
-        ]);
+public function store(Request $request)
+{
+    $typeId = $request->input('type_id');
+    $numero = $request->input('numero');
+    $assigne = $request->input('assigne');
+    $metier = $request->input('metier');
+    $marque = $request->input('marque');
 
-        return redirect()->route('dashboard');
-    }
+    Material::create([
+        'type_id' => $typeId,
+        'numero' => $numero,
+        'assigne_a' => $assigne,
+        'metier' => $metier,
+        'marque' => $marque,
+    ]);
+
+    $materials = Material::all();
+
+    $types = Type::all();
+    return view('add', ['materials' => $materials,'types' => $types]);
+}
+
 
     public function destroy($id)
 {
