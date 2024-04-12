@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\MetierController;
+use App\Models\Type;
+use App\Models\Metier;
+
 
 
 
@@ -15,9 +18,13 @@ Route::get('/', function () {
 Route::get('/dashboard', [MaterialController::class, 'index'])->name('dashboard');
 Route::post('/dashboard', [MaterialController::class, 'store'])->name('dashboard.store');
 Route::delete('/dashboard/{id}', [MaterialController::class, 'destroy']);
+Route::put('/dashboard/update/{id}', [MaterialController::class, 'update'])->name('dashboard.update');
 
-
-Route::get('/add', [MaterialController::class, 'store'])->name('add');
+Route::get('/add', function () {
+    $types = Type::all();
+    $metiers = Metier::all();
+    return view('add', ['types' => $types, 'metiers' => $metiers]);
+})->name('add');
 
 Route::get('/metier', [MetierController::class, 'index'])->name('metier');
 

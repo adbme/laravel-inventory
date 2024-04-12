@@ -17,15 +17,7 @@
 
     
 
-<div class="popup" id="popup">
-    <div class="popup-content">
-      <i id="closeBtn" class="fa fa-times" aria-hidden="true"></i>
 
-      @include('edit')
-    </div>
-  </div>
-
-  <div class="overlay" id="overlay"></div>
 
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
@@ -56,9 +48,50 @@
                     <i class="fa fa-trash"></i>
                 </button>
             </form>
-            <i id="popupBtn" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <button onclick="openPopup()" class="update-btn">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>  
         </td>
     </tr>
+    <!-- pop up edit -->
+    <div class="popup" id="popup">
+    <div class="popup-content">
+      <i id="closeBtn" class="fa fa-times" aria-hidden="true"></i>
+
+      <!-- @include('edit') -->
+      <form action="{{ route('dashboard.update', [$material->id]) }}" method="post">
+    @csrf
+    @method('PUT')
+        <label for="type">Type :</label>
+        <select id="type" name="type">
+        @foreach($types as $type)
+        <option value="{{ $type->id }}">{{ $type->name }}</option>
+    @endforeach
+        </select><br>
+
+        <label for="numero">Numéro :</label>
+        <input type="text" value="{{ $material->numero }}" id="numero" name="numero"><br>
+
+        <label for="assigne">Assigné à :</label>
+        <input type="text" value="{{ $material->assigne_a }}" id="assigne" name="assigne"><br>
+
+        <label for="metier">Métier :</label>
+        <select id="metier" name="metier">
+        @foreach($metiers as $metier)
+        <option value="{{$metier->id }}">{{ $metier->nom }}</option>
+    @endforeach
+        </select><br>
+
+        <label for="marque">Marque :</label>
+        <input type="text" value="{{ $material->marque }}" id="marque" name="marque"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
 @endforeach
 
         </tbody>
@@ -66,15 +99,15 @@
     </table>
 
     <script>
-        const popupBtn = document.getElementById('popupBtn');
 const popup = document.getElementById('popup');
 const closeBtn = document.getElementById('closeBtn');
 const overlay = document.getElementById('overlay');
 
-popupBtn.addEventListener('click', () => {
-  popup.style.display = 'block';
+function openPopup(){
+    popup.style.display = 'block';
   overlay.style.display = 'block';
-});
+}
+  
 
 closeBtn.addEventListener('click', () => {
   popup.style.display = 'none';

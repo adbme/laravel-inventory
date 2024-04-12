@@ -11,9 +11,10 @@ class MaterialController extends Controller
     public function index()
 {
     $materials = Material::all();
-
+    $types = Type::all();
+    $metiers = Metier::all();
     
-    return view('dashboard', ['materials' => $materials]);
+    return view('dashboard', ['materials' => $materials, 'types'=> $types, 'metiers'=>$metiers]);
 }
 
 
@@ -47,6 +48,28 @@ public function store(Request $request)
     $material = Material::findOrFail($id);
     $material->delete();
     return redirect()->route('dashboard');
+}
+
+
+public function update(Request $request, $id)
+{
+    $material = Material::findOrFail($id);
+
+    $typeId = $request->input('type');
+    $numero = $request->input('numero');
+    $assigne = $request->input('assigne');
+    $metierId = $request->input('metier');
+    $marque = $request->input('marque');
+
+    $material->type_id = $typeId;
+    $material->numero = $numero;
+    $material->assigne_a = $assigne;
+    $material->metier_id = $metierId;
+    $material->marque = $marque;
+
+    $material->update();
+
+    return redirect()->back()->with('status', 'Matériel bien mis à jour');
 }
 
 
