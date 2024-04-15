@@ -7,7 +7,7 @@
         </h2>
 
         <form action="{{ route('material.search') }}" method="GET">
-            <input class="searchBar" placeholder="Rechercher du matériel" type="search" id="q" name="q">
+            <input class="searchBar" placeholder="Rechercher du matériel" type="search" id="input" name="input">
             <input type="submit">
         </form>
 

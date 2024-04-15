@@ -75,7 +75,7 @@ public function update(Request $request, $id)
 
 public function search(Request $request)
 {
-    $searchTerm = $request->input('q'); 
+    $searchTerm = $request->input('input'); 
     
     $materials = Material::where('numero', 'LIKE', "%$searchTerm%")
                         ->orWhere('assigne_a', 'LIKE', "%$searchTerm%")
