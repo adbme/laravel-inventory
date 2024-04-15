@@ -73,5 +73,27 @@ public function update(Request $request, $id)
 }
 
 
+public function search(Request $request)
+{
+    $searchTerm = $request->input('q'); 
+    
+    $materials = Material::where('numero', 'LIKE', "%$searchTerm%")
+                        ->orWhere('assigne_a', 'LIKE', "%$searchTerm%")
+                        ->orWhere('marque', 'LIKE', "%$searchTerm%")
+                        ->orWhereHas('type', function ($query) use ($searchTerm) {
+                            $query->where('name', 'LIKE', "%$searchTerm%");
+                        })
+                        ->orWhereHas('metier', function ($query) use ($searchTerm) {
+                            $query->where('nom', 'LIKE', "%$searchTerm%");
+                        })
+                        ->get();
+
+    $types = Type::all();
+    $metiers = Metier::all();
+    
+    return view('dashboard', ['materials' => $materials, 'types' => $types, 'metiers' => $metiers]);
+}
+
+
 
 }

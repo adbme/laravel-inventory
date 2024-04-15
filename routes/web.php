@@ -19,6 +19,8 @@ Route::get('/dashboard', [MaterialController::class, 'index'])->name('dashboard'
 Route::post('/dashboard', [MaterialController::class, 'store'])->name('dashboard.store');
 Route::delete('/dashboard/{id}', [MaterialController::class, 'destroy']);
 Route::put('/dashboard/update/{id}', [MaterialController::class, 'update'])->name('dashboard.update');
+Route::get('/search', [MaterialController::class, 'search'])->name('material.search');
+
 
 Route::get('/add', function () {
     $types = Type::all();
